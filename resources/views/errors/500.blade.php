@@ -1,5 +1,5 @@
 @extends('main-error')
-@section('title', 'Oops hubo un error')
+@section('title', 'Server error')
 @section('content')
     <div class="bg-light min-vh-100 d-flex flex-row align-items-center">
         <div class="container">
@@ -7,10 +7,10 @@
                 <div class="col-md-6">
                     <div
                         class="clearfix d-flex justify-content-center align-content-center flex-wrap align-items-center flex-column">
-                        <img src={{ asset('img/error404.png') }} alt="Error 404" width="400px" />
-                        <h1 class="float-start display-3 me-4">404</h1>
-                        <h4 class="pt-3">¡Ups! Estas perdido.</h4>
-                        <p class="text-medium-emphasis">No se encontró la página que está buscando.</p>
+                        <img src={{ asset('img/error500.png') }} alt="Error 404" width="300px" />
+                        <h1 class="float-start display-3 me-4">500</h1>
+                        <h4 class="pt-3">¡Houston, tenemos un problema!</h4>
+                        <p class="text-medium-emphasis">La página que está buscando no está disponible temporalmente.</p>
                     </div>
                     <div class="d-flex justify-content-center align-content-center">
 

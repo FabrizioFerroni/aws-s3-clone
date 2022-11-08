@@ -5,16 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Buckets;
 use App\Models\Subbuckets;
 use App\Models\User;
-// use Auth;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
-// use Storage;
-// use Str, Config;
-// use Validator;
 
 class BucketsController extends Controller
 {
@@ -138,8 +134,6 @@ class BucketsController extends Controller
                 } else {
                     return back()->with('message', 'Ya existe el directorio')->with('typealert', 'warning');
                 }
-                // dd($test);
-                // return back()->with('message', 'Ya existe el directorio')->with('typealert', 'warning');
             }
             // Config::get('filesystems.disks.public.root');
         }
@@ -224,10 +218,8 @@ class BucketsController extends Controller
         $bucket = Buckets::find($id);
         $subbucket = Subbuckets::where('bucket_id', $id)->count();
 
-
-
         if (is_null($bucket)) {
-            return "Es nulo";
+            return redirect('404');
         } else {
             $url = $bucket->url;
             if (Storage::disk('uploads')->exists($url)) {
@@ -254,6 +246,9 @@ class BucketsController extends Controller
     public function getCreateBucket($nombre)
     {
         $bucket = Buckets::where('slug', $nombre)->first();
+        if($bucket === null){
+            return redirect('404');
+        }
         $id = $bucket->id;
         $bnombre = $bucket->nombre;
         $data = ['nombre' => $bnombre, 'slug' => $nombre, 'id'=> $id];
